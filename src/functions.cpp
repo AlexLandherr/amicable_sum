@@ -2,6 +2,7 @@
 #include <vector>
 #include <algorithm>
 #include <cstdint>
+#include <cmath>
 
 /*
 Let d(n) be defined as the sum of proper divisors of n (numbers less than n which divide evenly into n).
@@ -14,21 +15,19 @@ Evaluate the sum of all the amicable numbers under 10000.
 */
 
 namespace func {
-    std::vector<int64_t> divisors_of(int64_t number, bool use_sort) {
+    std::vector<int64_t> proper_divisors_of(int64_t number, bool use_sort) {
         std::vector<int64_t> result;
-        int i = 1;
-
-        //Loop from 1 to int(sqrt(x)).
-        while (i * i <= number) {
-            //Check if num is divisible by i.
+        result.push_back(1);
+        
+        for (int i = 2; i <= std::sqrt(number); i++) {
             if (number % i == 0) {
-                result.push_back(i);
-                //Handle if num / i == i.
-                if (number / i != i) {
+                if (number / i == i) {
+                    result.push_back(i);
+                } else {
+                    result.push_back(i);
                     result.push_back(number / i);
                 }
             }
-            i++;
         }
         
         if (use_sort) {

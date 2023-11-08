@@ -14,7 +14,7 @@ Evaluate the sum of all the amicable numbers under 10000.
 */
 
 int main() {
-    std::vector<int64_t> v = func::divisors_of(284, true);
+    std::vector<int64_t> v = func::proper_divisors_of(220, true);
     for (int64_t i : v) {
         std::cout << i << '\n';
     }
