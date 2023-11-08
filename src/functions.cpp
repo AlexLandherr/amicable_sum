@@ -19,12 +19,12 @@ namespace func {
         int i = 1;
 
         //Loop from 1 to int(sqrt(x)).
-        while(i * i <= number) {
+        while (i * i <= number) {
             //Check if num is divisible by i.
-            if(number % i == 0) {
+            if (number % i == 0) {
                 result.push_back(i);
                 //Handle if num / i == i.
-                if(number / i != i) {
+                if (number / i != i) {
                     result.push_back(number / i);
                 }
             }
