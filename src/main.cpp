@@ -1,5 +1,7 @@
 #include "include/functions.h"
 #include <iostream>
+#include <cstdint>
+#include <vector>
 
 /*
 Let d(n) be defined as the sum of proper divisors of n (numbers less than n which divide evenly into n).
@@ -12,6 +14,10 @@ Evaluate the sum of all the amicable numbers under 10000.
 */
 
 int main() {
+    std::vector<int64_t> v = func::divisors_of(284, true);
+    for (int64_t i : v) {
+        std::cout << i << '\n';
+    }
 
     return 0;
 }
