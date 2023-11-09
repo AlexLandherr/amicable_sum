@@ -14,10 +14,13 @@ Evaluate the sum of all the amicable numbers under 10000.
 */
 
 int main() {
-    std::vector<int64_t> v = func::proper_divisors_of(220, true);
+    /* std::vector<int64_t> v = func::proper_divisors_of(220, true);
     for (int64_t i : v) {
         std::cout << i << '\n';
-    }
+    } */
+    //std::cout << func::sum_of_proper_divisors_of(10000) << '\n';
+    std::cout << "The sum of all the amicable numbers under 10000 is:" << '\n';
+    std::cout << func::sum_of_all_amicable_numbers_less_than(10000) << '\n';
 
     return 0;
 }

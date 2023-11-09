@@ -3,16 +3,7 @@
 #include <algorithm>
 #include <cstdint>
 #include <cmath>
-
-/*
-Let d(n) be defined as the sum of proper divisors of n (numbers less than n which divide evenly into n).
-If d(a) = b and d(b) = a, where a != b, then a and b are an amicable pair and each of a and b are called amicable numbers.
-
-For example, the proper divisors of 220 are 1, 2, 4, 5, 10, 11, 20, 22, 44, 55 and 110; therefore d(220) = 284.
-The proper divisors of 284 are 1, 2, 4, 71 and 142; so d(284) = 220.
-
-Evaluate the sum of all the amicable numbers under 10000.
-*/
+#include <numeric>
 
 namespace func {
     std::vector<int64_t> proper_divisors_of(int64_t number, bool use_sort) {
@@ -36,5 +27,38 @@ namespace func {
 
         //Return the list of divisors of number.
         return result;
+    }
+
+    int64_t sum_of_proper_divisors_of(int64_t number) {
+        int64_t result = 0;
+
+        if (number == 1 || number == 0) {
+            return result;
+        }
+        
+        result++;
+        for (int i = 2; i <= std::sqrt(number); i++) {
+            if (number % i == 0) {
+                if (number / i == i) {
+                    result += i;
+                } else {
+                    result += (i + (number / i));
+                }
+            }
+        }
+
+        //Return the sum of the proper divisors of number.
+        return result;
+    }
+
+    int64_t sum_of_all_amicable_numbers_less_than(int64_t limit) {
+        std::vector<int64_t> amicable_numbers;
+        for (int n = 1; n < limit; n++) {
+            if (n == sum_of_proper_divisors_of(sum_of_proper_divisors_of(n)) && n != sum_of_proper_divisors_of(n)) {
+                amicable_numbers.push_back(n);
+            }
+        }
+
+        return std::accumulate(amicable_numbers.begin(), amicable_numbers.end(), 0);
     }
 }
